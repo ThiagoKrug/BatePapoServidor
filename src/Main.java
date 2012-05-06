@@ -11,8 +11,7 @@ public class Main {
     
     public static void main(String[] args) {
         Principal p = Principal.getInstance();
-        //p.iniciar();
-        p.teste();
+        p.iniciarServidor();
     }
     
 }

@@ -6,13 +6,15 @@ import java.io.PrintStream;
 import java.net.Socket;
 import java.util.Iterator;
 
-/*
- * To change this template, choose Tools | Templates and open the template in
- * the editor.
- */
 /**
+ * Classe Conexao que dispara uma thread para atender a conexão de clientes no
+ * chat. A thread que atende um cliente específico deve esperar que este envie
+ * uma mensagem e replicar esta mensagem para todos os clientes conectados.
+ * Quando esse cliente desconectar a thread deve avisar a todos os clientes
+ * conectados que isso ocorreu.
  *
- * @author thiago
+ * @author Thiago Krug
+ * @author Bruno Vicelli
  */
 public class Conexao extends Thread {
 
@@ -32,10 +34,19 @@ public class Conexao extends Thread {
     public static String NAMES = "NAMES";
     public static String QUIT = "QUIT";
 
+    /**
+     * Metodo que cria um socket que fica aguardando a conexão de um cliente
+     *
+     * @param conexaoCliente
+     */
     public Conexao(Socket conexaoCliente) {
         this.conexaoCliente = conexaoCliente;
     }
 
+    /**
+     * Metodo que inicia a execução da thread e faz as trocas de contexto das
+     * mensagens dependendo do comando utilizado segundo o protocolo
+     */
     public void run() {
         try {
             BufferedReader entrada = new BufferedReader(new InputStreamReader(conexaoCliente.getInputStream()));
@@ -124,13 +135,23 @@ public class Conexao extends Thread {
             if (usuario != null) {
                 System.out.println(usuario.getNome() + " desconectou!");
                 Principal.getUsuarios().removerUsuario(usuario);
-            }
+            }//encerra a conexão 
             conexaoCliente.close();
         } catch (IOException e) {
             System.out.println("IOException: " + e);
         }
     }
 
+    /**
+     * Metodo utilizado para enviar as mensagens para todos os clientes
+     * conectados no chat
+     *
+     * @param saida
+     * @param tipoMensagem
+     * @param nomeEmissor
+     * @param mensagem
+     * @throws IOException
+     */
     public void enviarParaTodos(PrintStream saida, String tipoMensagem,
             String nomeEmissor, String mensagem) throws IOException {
         for (Iterator it = Principal.getUsuarios().getUsuarios().iterator(); it.hasNext();) {
@@ -142,6 +163,17 @@ public class Conexao extends Thread {
         }
     }
 
+    /**
+     * Metodo utilizado para enviar uma mensagem reservado para algum usuário
+     * específico que esta conectado no chat
+     *
+     *
+     * @param saida
+     * @param tipoMensagem
+     * @param nomeEmissor
+     * @param destinatario
+     * @param mensagem
+     */
     public void enviarPrivado(PrintStream saida, String tipoMensagem,
             String nomeEmissor, String destinatario, String mensagem) {
 
@@ -151,10 +183,23 @@ public class Conexao extends Thread {
         }
     }
 
+    /**
+     * Metodo para enviar um comando para o servidor devolver todos os clientes
+     * conectados no momento no chat
+     *
+     * @param saida
+     */
     public void comandoNames(PrintStream saida) {
         saida.println(Conexao.NAMES + " " + Principal.getUsuarios().getNames());
     }
 
+    /**
+     * Metodo utilizado pelo cliente para se desconectar do chat 
+     * 
+     * @param saida
+     * @param nomeUsuario
+     * @param mensagem 
+     */
     public void comandoQuit(PrintStream saida, String nomeUsuario, String mensagem) {
         for (Iterator it = Principal.getUsuarios().getUsuarios().iterator(); it.hasNext();) {
             Usuario usuario = (Usuario) it.next();

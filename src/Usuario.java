@@ -2,22 +2,27 @@
 import java.io.PrintStream;
 import java.net.InetAddress;
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
+ * Classe Usuraio utilizada para criar a estrutura de um usuário que sera o
+ * cliente no chat de bate-papo
  *
- * @author thiago
+ * @author Bruno
  */
 public class Usuario {
-    
+
     private String nome;
     private InetAddress ip;
     private int porta;
     private PrintStream streamSaida;
 
+    /**
+     * Metodo construtor que cria a estrutura de um usuario 
+     * 
+     * @param nome
+     * @param ip
+     * @param porta
+     * @param streamSaida 
+     */
     public Usuario(String nome, InetAddress ip, int porta, PrintStream streamSaida) {
         this.nome = nome;
         this.ip = ip;

@@ -3,13 +3,10 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-/*
- * To change this template, choose Tools | Templates and open the template in
- * the editor.
- */
 /**
+ * Classe principal que cria a estrutura do servidor e inicia-o
  *
- * @author thiago
+ * @author Thiago Krug
  */
 public class Principal {
 
@@ -23,6 +20,11 @@ public class Principal {
         porta = 5588;
     }
 
+    /**
+     * Cria um objto da classe Principal utilizando o padrão Singleton
+     *
+     * @return principal
+     */
     public static Principal getInstance() {
         if (principal == null) {
             principal = new Principal();
@@ -30,6 +32,11 @@ public class Principal {
         return principal;
     }
 
+    /**
+     * Metodo que inicia o servidor e cria um socket que fica aguardando
+     * conexões
+     *
+     */
     public void iniciarServidor() {
         try {
             serverSocket = new ServerSocket(porta);
@@ -45,6 +52,11 @@ public class Principal {
         }
     }
     
+    /**
+     * Metodo que retorna uma lista de usuarios conectados
+     * 
+     * @return usuarios
+     */
     public static Usuarios getUsuarios() {
         return usuarios;
     }

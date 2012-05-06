@@ -1,17 +1,14 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
 /**
+ * Classe para inicializar o programa servidor que cria uma instancia do objeto
+ * principal que inicia o servidor utilizando o Padrão Singleton
  *
- * @author thiago
+ * @author Thiago Krug
  */
 public class Main {
-    
+
     public static void main(String[] args) {
         Principal p = Principal.getInstance();
         p.iniciarServidor();
     }
-    
 }

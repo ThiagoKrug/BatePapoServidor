@@ -1,13 +1,11 @@
 
 import java.net.DatagramPacket;
 
-/*
- * To change this template, choose Tools | Templates and open the template in
- * the editor.
- */
 /**
- *
- * @author thiago
+ * Classe Interpretador utilizada para fazer a quebra das Strins das mensagens 
+ * para que o servidor identifique os comandos padronizados do protocolo especificado
+ * 
+ * @author Thiago Krug
  */
 public class Interpretador {
 
@@ -20,12 +18,20 @@ public class Interpretador {
         String mensagem = new String(buffer2);
         return this.interpretarMensagem(mensagem);
     }
-    
+    /**
+     * Método para fazer a quebra das Strings das mensagens
+     * @param mensagem
+     * @return 
+     */
     public String[] interpretarMensagem(String mensagem) {
         String[] mensagens = mensagem.split("\\ ");
         return mensagens;
     }
-    
+    /**
+     * Método para concatenar as Strings das mensagens
+     * @param mensagem
+     * @return 
+     */
     public String juntarMensagem(String[] mensagem) {
         String m = "";
         if (mensagem.length > 1) {

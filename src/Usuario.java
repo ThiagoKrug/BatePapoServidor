@@ -1,4 +1,5 @@
 
+import java.io.PrintStream;
 import java.net.InetAddress;
 
 /*
@@ -15,12 +16,13 @@ public class Usuario {
     private String nome;
     private InetAddress ip;
     private int porta;
-    private Mensagem mensagem;
+    private PrintStream streamSaida;
 
-    public Usuario(String nome, InetAddress ip, int porta) {
+    public Usuario(String nome, InetAddress ip, int porta, PrintStream streamSaida) {
         this.nome = nome;
         this.ip = ip;
         this.porta = porta;
+        this.streamSaida = streamSaida;
     }
 
     /**
@@ -66,17 +68,16 @@ public class Usuario {
     }
 
     /**
-     * @return the mensagem
+     * @return the streamSaida
      */
-    public Mensagem getMensagem() {
-        return mensagem;
+    public PrintStream getStreamSaida() {
+        return streamSaida;
     }
 
     /**
-     * @param mensagem the mensagem to set
+     * @param streamSaida the streamSaida to set
      */
-    public void setMensagem(Mensagem mensagem) {
-        this.mensagem = mensagem;
+    public void setStreamSaida(PrintStream streamSaida) {
+        this.streamSaida = streamSaida;
     }
-    
 }

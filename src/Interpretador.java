@@ -27,9 +27,17 @@ public class Interpretador {
     }
     
     public String juntarMensagem(String[] mensagem) {
+        return this.juntarMensagem(mensagem, 1);
+    }
+    
+    public String juntarMensagemPrivada(String[] mensagem) {
+        return this.juntarMensagem(mensagem, 2);
+    }
+    
+    private String juntarMensagem(String[] mensagem, int index) {
         String m = "";
-        if (mensagem.length > 1) {
-            for (int i = 1; i < mensagem.length; i++) {
+        if (mensagem.length > index) {
+            for (int i = index; i < mensagem.length; i++) {
                 m += mensagem[i] + " ";
             }
         }

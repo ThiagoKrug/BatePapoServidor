@@ -37,11 +37,11 @@ public class Conexao extends Thread {
     }
 
     public void run() {
+        Usuario usuario = null;
         try {
             BufferedReader entrada = new BufferedReader(new InputStreamReader(conexaoCliente.getInputStream()));
             PrintStream saida = new PrintStream(conexaoCliente.getOutputStream());
             // aqui a cobra fuma!
-            Usuario usuario = null;
             // lê o comando SERVER
             String server = entrada.readLine();
             String[] mensagemUsuario = null;
@@ -50,7 +50,7 @@ public class Conexao extends Thread {
             if (mensagemServer[0].equalsIgnoreCase(Conexao.SERVER)
                     && mensagemServer.length > 1 && mensagemServer.length < 4) {
                 // lê o comando USER
-                saida.println("Esperando nome do usuário");
+                saida.println("WAITING_USER");
                 String usuarioLine = entrada.readLine();
                 mensagemUsuario = new Interpretador().interpretarMensagem(usuarioLine);
                 // se o comando for USER, e se o vetor contiver 2 parâmetros, faz:
@@ -85,10 +85,10 @@ public class Conexao extends Thread {
                                 } else if (mensagem[0].equalsIgnoreCase(Conexao.PRIVMSG)) {
                                     // se o usuário existe na lista
                                     if (Principal.getUsuarios().contemUsuario(mensagem[1])) {
-                                        // se falta a mensagem
+                                        // se contem alguma mensagem
                                         if (mensagem.length > 2) {
                                             this.enviarPrivado(saida, Conexao.PRIVMSG_SENDED, usuario.getNome(),
-                                                    mensagem[1], usuarioPrivadoDiz + new Interpretador().juntarMensagem(mensagem));
+                                                    mensagem[1], usuarioPrivadoDiz + new Interpretador().juntarMensagemPrivada(mensagem));
                                         } else { // senão retorna o erro NOTEXTTOSEND
                                             saida.println(Conexao.NOTEXTTOSEND);
                                         }
@@ -128,6 +128,11 @@ public class Conexao extends Thread {
             conexaoCliente.close();
         } catch (IOException e) {
             System.out.println("IOException: " + e);
+        } finally {
+            if (usuario != null) {
+                System.out.println(usuario.getNome() + " desconectou!");
+                Principal.getUsuarios().removerUsuario(usuario);
+            }
         }
     }
 
@@ -136,9 +141,7 @@ public class Conexao extends Thread {
         for (Iterator it = Principal.getUsuarios().getUsuarios().iterator(); it.hasNext();) {
             Usuario usuario = (Usuario) it.next();
             PrintStream streamSaida = usuario.getStreamSaida();
-            //if (streamSaida != saida) {
             streamSaida.println(tipoMensagem + " " + nomeEmissor + " " + mensagem);
-            //}
         }
     }
 
@@ -146,9 +149,7 @@ public class Conexao extends Thread {
             String nomeEmissor, String destinatario, String mensagem) {
 
         PrintStream streamSaida = Principal.getUsuarios().getStreamDestinatario(destinatario);
-        if (streamSaida != saida) {
-            streamSaida.println(tipoMensagem + " " + nomeEmissor + " " + mensagem);
-        }
+        streamSaida.println(tipoMensagem + " " + nomeEmissor + " " + mensagem);
     }
 
     public void comandoNames(PrintStream saida) {

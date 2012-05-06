@@ -35,9 +35,9 @@ public class Principal {
             serverSocket = new ServerSocket(porta);
             System.out.println("Servidor iniciado!");
             while (true) {
-                System.out.print("Escutando conexões na porta " + porta + "...");
+                System.out.println("Escutando conexões na porta " + porta + "...");
                 Socket conexao = serverSocket.accept();
-                Thread t = new ServidorDeChat(conexao);
+                Thread t = new Conexao(conexao);
                 t.start();
             }
         } catch (IOException e) {

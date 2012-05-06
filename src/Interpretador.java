@@ -1,7 +1,5 @@
 
 import java.net.DatagramPacket;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /*
  * To change this template, choose Tools | Templates and open the template in

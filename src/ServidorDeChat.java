@@ -31,7 +31,7 @@ public class ServidorDeChat extends Thread {
             System.out.println("IOException: " + e);
         }
     }
-    // Parte que controla as conexões por meio de threads.  
+    // Parte que controla as conexões por meio de  threads.  
     // Note que a instanciação está no main. 
     private static Vector clientes;
 // socket deste cliente private 
@@ -75,6 +75,7 @@ public class ServidorDeChat extends Thread {
             while (linha != null && !(linha.trim().equals(""))) {
                 // reenvia a linha para todos os clientes conectados    
                 sendToAll(saida, " disse: ", linha);
+                System.out.println(linha);
                 // espera por uma nova linha.    
                 linha = entrada.readLine();
             }
@@ -97,9 +98,9 @@ public class ServidorDeChat extends Thread {
             // obtém o fluxo de saída de um dos clientes   
             PrintStream chat = (PrintStream) e.nextElement();
             // envia para todos, menos para o próprio usuário   
-            if (chat != saida) {
+            //if (chat != saida) {
                 chat.println(meuNome + acao + linha);
-            }
+            //}
         }
     }
 }

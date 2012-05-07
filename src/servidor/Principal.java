@@ -6,7 +6,8 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 /**
- * Classe principal que cria a estrutura do servidor e inicia-o
+ * Classe principal que cria a estrutura do servidor e inicia-o. Utiliza 
+ * o padrão Singleton.
  *
  * @author Bruno Vicelli
  * @author Mateus Henrique Dal Forno
@@ -25,7 +26,7 @@ public class Principal {
     }
 
     /**
-     * Cria um objto da classe Principal utilizando o padrão Singleton
+     * Cria um objeto da classe Principal utilizando o padrão Singleton
      *
      * @return principal
      */

@@ -13,20 +13,7 @@ import java.net.DatagramPacket;
  */
 public class Interpretador {
 
-    /**
-     * Metodo responsavel por interpretar uma mensagem recebida em um socket
-     * @param request
-     * @return 
-     */
-    public String[] interpretarMensagem(DatagramPacket request) {
-        byte[] buffer = request.getData();
-        byte[] buffer2 = new byte[request.getLength()];
-        for (int i = 0; i < request.getLength(); i++) {
-            buffer2[i] = buffer[i];
-        }
-        String mensagem = new String(buffer2);
-        return this.interpretarMensagem(mensagem);
-    }
+
     /**
      * Método para fazer a quebra das Strings das mensagens
      * @param mensagem

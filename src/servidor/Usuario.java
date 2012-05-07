@@ -5,7 +5,7 @@ import java.io.PrintStream;
 import java.net.InetAddress;
 
 /**
- * Classe Usuraio utilizada para criar a estrutura de um usuário que sera o
+ * Classe Usuario utilizada para criar a estrutura de um usuário que sera o
  * cliente no chat de bate-papo
  *
  * @author Bruno Vicelli

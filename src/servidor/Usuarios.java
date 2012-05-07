@@ -30,7 +30,7 @@ public class Usuarios {
      * usuarios conectados
      *
      * @param usuario
-     * @return listaUsuarios mais o novo cliente adicionado
+     * @return true caso foi adicionado com sucesso
      */
     public boolean addUsuario(Usuario usuario) {
         return listaUsuarios.add(usuario);
@@ -41,7 +41,7 @@ public class Usuarios {
      * do chat
      *
      * @param usuario
-     * @return listaUsuarios menos o cliente que se desconectou do chat
+     * @return true caso foi removido com sucesso
      */
     public boolean removerUsuario(Usuario usuario) {
         return listaUsuarios.remove(usuario);
@@ -88,7 +88,7 @@ public class Usuarios {
     }
 
     /**
-     * Metodo para pegar o o fluxo de dados dos destinatarios das mensagens
+     * Metodo para pegar o o fluxo de dados do destinatario da mensagem
      *
      * @param nomeDestinatario
      * @return
@@ -104,7 +104,7 @@ public class Usuarios {
     }
 
     /**
-     * Metdod que retorna a lista de usuarios
+     * Metodo que retorna a lista de usuarios
      *
      * @return lista de usuarios
      */
@@ -113,11 +113,10 @@ public class Usuarios {
     }
 
     /**
-     * Metodo que retorna o nome de um usuario caso ele contenha na lista
+     * Metodo que retorna true caso o nome de um usuario esteja na lista
      *
      * @param nomeUsuario
      * @return true caso o nome esteja na lista
-     * @return false caso contrario
      */
     public boolean contemUsuario(String nomeUsuario) {
         for (Iterator<Usuario> it = listaUsuarios.iterator(); it.hasNext();) {

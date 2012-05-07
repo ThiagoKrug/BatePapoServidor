@@ -1,3 +1,5 @@
+package servidor;
+
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -6,7 +8,9 @@ import java.net.Socket;
 /**
  * Classe principal que cria a estrutura do servidor e inicia-o
  *
- * @author Thiago Krug
+ * @author Bruno Vicelli
+ * @author Mateus Henrique Dal Forno
+ * @author Thiago Cassio Krug
  */
 public class Principal {
 

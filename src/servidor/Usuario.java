@@ -1,3 +1,5 @@
+package servidor;
+
 
 import java.io.PrintStream;
 import java.net.InetAddress;
@@ -6,7 +8,9 @@ import java.net.InetAddress;
  * Classe Usuraio utilizada para criar a estrutura de um usuário que sera o
  * cliente no chat de bate-papo
  *
- * @author Bruno
+ * @author Bruno Vicelli
+ * @author Mateus Henrique Dal Forno
+ * @author Thiago Cassio Krug
  */
 public class Usuario {
 

@@ -1,3 +1,5 @@
+package servidor;
+
 
 import java.io.PrintStream;
 import java.util.ArrayList;
@@ -8,7 +10,9 @@ import java.util.List;
  * Classe Usuarios utilizada para criar uma lista de usuarios que estao
  * conectados no chat em um determinado momento
  *
- * @author Thiago Krug
+ * @author Bruno Vicelli
+ * @author Mateus Henrique Dal Forno
+ * @author Thiago Cassio Krug
  */
 public class Usuarios {
 
